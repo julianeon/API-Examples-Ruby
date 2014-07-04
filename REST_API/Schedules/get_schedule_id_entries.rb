@@ -1,17 +1,25 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
 
-subdomain='CHANGE_THIS'
-api_token='CHANGE_THIS'
-schedule_id='PU558LC'
-user_id='PMUQ3OT'
-since_date="2014-05-02T01:00Z"
-until_date="2014-05-05T01:00Z"
+SUBDOMAIN = 'CHANGE_THIS'
+API_TOKEN = 'CHANGE_THIS'
+SCHEDULE_ID = 'PU558LC'
+USER_ID = 'PMUQ3OT'
+SINCE_DATE = '2014-05-02T01:00Z'
+UNTIL_DATE = '2014-05-05T01:00Z'
 
-endpoint="https://#{subdomain}.pagerduty.com/api/v1/schedules/#{schedule_id}/entries"
-endpoint << "?since=#{since_date}&until=#{until_date}"
-endpoint << "&user_id=#{user_id}"
-token_string="Token token=#{api_token}"
+ENDPOINT = "https://#{SUBDOMAIN}.pagerduty.com/api/v1/schedules/" \
+           "#{SCHEDULE_ID}/entries?since=#{SINCE_DATE}&until=" \
+           "#{UNTIL_DATE}&user_id=#{USER_ID}"
+TOKEN_STRING = "Token token=#{API_TOKEN}"
 
-response = HTTParty.get(endpoint, :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
-text= response.body
-puts text
+response = HTTParty.get(
+  ENDPOINT,
+  headers: {
+    'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
+  }
+)
+
+puts response.body

@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
 
 subdomain='CHANGE_THIS'
