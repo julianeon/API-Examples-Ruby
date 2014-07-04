@@ -1,20 +1,29 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
 
-subdomain='CHANGE_THIS'
-api_token='CHANGE_THIS'
-service_id='PPVUPKM'
+SUBDOMAIN = 'CHANGE_THIS'
+API_TOKEN = 'CHANGE_THIS'
+SERVICE_ID = 'PPVUPKM'
 
-endpoint="https://#{subdomain}.pagerduty.com/api/v1/services/#{service_id}/email_filters"
-token_string="Token token=#{api_token}"
+ENDPOINT = "https://#{SUBDOMAIN}.pagerduty.com/api/v1/services/" \
+           "#{SERVICE_ID}/email_filters"
+TOKEN_STRING = "Token token=#{API_TOKEN}"
 
 data = {
-       email_filter:
-       {  body_mode:"no-match",
-          body_regex:"sev 3"}
-       }
+  email_filter: {
+    body_mode: 'no-match',
+    body_regex: 'sev 3'
+  }
+}
 
-response= HTTParty.post(endpoint, 
-                        :body => data.to_json,
-                        :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
-text= response.body
-puts text
+response = HTTParty.post(
+  endpoint,
+  body: data.to_json,
+  headers: {
+    'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
+  }
+)
+
+puts response.body

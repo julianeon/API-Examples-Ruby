@@ -1,24 +1,30 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
 
-subdomain='CHANGE_THIS'
-api_token='CHANGE_THIS'
-service_id='PPYL9PR'
+SUBDOMAIN = 'CHANGE_THIS'
+API_TOKEN = 'CHANGE_THIS'
+SERVICE_ID = 'PPYL9PR'
 
-endpoint="https://#{subdomain}.pagerduty.com/api/v1/services/#{service_id}"
+ENDPOINT = "https://#{subdomain}.pagerduty.com/api/v1/services/#{service_id}"
 
-token_string="Token token=#{api_token}"
+TOKEN_STRING = "Token token=#{api_token}"
 
-data =
-      {    
-      service: {
-        name: "My New Name",
-        description: "Brand New Description",
-        escalation_policy_id: "PBL9SYQ"
-      }
-      }
+data = {
+  service: {
+    name: 'My New Name',
+    description: 'Brand New Description',
+    escalation_policy_id: 'PBL9SYQ'
+  }
+}
 
-response = HTTParty.put(endpoint, 
-                        :body => data.to_json,
-                        :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
-text= response.body
-puts text
+response = HTTParty.put(
+  ENDPOINT,
+  body: data.to_json,
+  headers: {
+    'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
+  }
+)
+
+puts response.body

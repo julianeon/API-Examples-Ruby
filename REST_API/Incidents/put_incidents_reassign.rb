@@ -1,16 +1,24 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
 
-subdomain='CHANGE_THIS'
-api_token='CHANGE_THIS'
-incident_id='PWTXP2C'
-user_id='P3Y4319'
-assign_to_user='P4RKUT9'
+SUBDOMAIN = 'CHANGE_THIS'
+API_TOKEN = 'CHANGE_THIS'
+INCIDENT_ID = 'PWTXP2C'
+USER_ID = 'P3Y4319'
+ASSIGN_TO_USER = 'P4RKUT9'
 
-endpoint="https://#{subdomain}.pagerduty.com/api/v1/incidents/#{incident_id}/reassign"
-endpoint << "?requester_id=#{user_id}"
-endpoint << "&assigned_to_user=#{assign_to_user}"
-token_string="Token token=#{api_token}"
+ENDPOINT = "https://#{SUBDOMAIN}.pagerduty.com/api/v1/incidents/" \
+           "#{INCIDENT_ID}/reassign?requester_id=#{USER_ID}" \
+           "&assigned_to_user=#{ASSIGN_TO_USER}"
+TOKEN_STRING = "Token token=#{API_TOKEN}"
 
-response = HTTParty.put(endpoint, :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
-text= response.body
-puts text
+response = HTTParty.put(
+  ENDPOINT,
+  headers: {
+    'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
+  }
+)
+
+puts response.body

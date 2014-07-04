@@ -1,22 +1,28 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
 
-subdomain='CHANGE_THIS'
-api_token='CHANGE_THIS'
-service_key='CHANGE_THIS'
+API_TOKEN = 'CHANGE_THIS'
+SERVICE_KEY = 'CHANGE_THIS'
 
-endpoint="https://events.pagerduty.com/generic/2010-04-15/create_event.json"
-token_string="Token token=#{api_token}"
+ENDPOINT = 'https://events.pagerduty.com/generic/2010-04-15/create_event.json'
+TOKEN_STRING = "Token token=#{API_TOKEN}"
 
 data = {
-       service_key: service_key,
-       incident_key: "srv01/HTTP",
-       event_type: "resolve",
-       description: "Andrew fixed the problem.",
-       details: "2010-06-10 06:00" 
-       }
+  service_key: SERVICE_KEY,
+  incident_key: 'srv01/HTTP',
+  event_type: 'resolve',
+  description: 'Andrew fixed the problem.',
+  details: '2010-06-10 06:00'
+}
 
-response= HTTParty.post(endpoint, 
-                        :body => data.to_json,
-                        :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
-text= response.body
-puts text
+response = HTTParty.post(
+  ENDPOINT,
+  body: data.to_json,
+  headers: {
+    'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
+  }
+)
+
+puts response.body

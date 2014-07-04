@@ -1,5 +1,7 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
-require 'json'
 
 subdomain='CHANGE_THIS'
 api_token='CHANGE_THIS'

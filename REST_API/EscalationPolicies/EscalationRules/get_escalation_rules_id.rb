@@ -1,12 +1,22 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
 
-subdomain='CHANGE_THIS'
-api_token='CHANGE_THIS'
-escalation_id='PITG119'
-rules_id="PDBEMQN"
-endpoint="https://#{subdomain}.pagerduty.com/api/v1/escalation_policies/#{escalation_id}/escalation_rules/#{rules_id}"
-token_string="Token token=#{api_token}"
+SUBDOMAIN = 'CHANGE_THIS'
+API_TOKEN = 'CHANGE_THIS'
+ESCALATION_ID = 'PITG119'
+RULES_ID = 'PDBEMQN'
 
-response = HTTParty.get(endpoint, :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
-text= response.body
-puts text
+ENDPOINT = "https://#{SUBDOMAIN}.pagerduty.com/api/v1/escalation_policies/" \
+           "#{ESCALATION_ID}/escalation_rules/#{RULES_ID}"
+TOKEN_STRING = "Token token=#{API_TOKEN}"
+
+response = HTTParty.get(
+  ENDPOINT,
+  headers: {
+    'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
+  }
+)
+
+puts response.body

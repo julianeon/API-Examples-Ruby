@@ -1,34 +1,42 @@
+#!/usr/bin/env ruby
+# -*- coding: UTF-8 -*-
+
 require 'httparty'
- 
-subdomain='CHANGE_THIS'
-api_token='CHANGE_THIS'
-escalation_id='P1UHZGM'
-endpoint="https://#{subdomain}.pagerduty.com/api/v1/escalation_policies/#{escalation_id}/escalation_rules"
-token_string="Token token=#{api_token}"
+
+SUBDOMAIN = 'CHANGE_THIS'
+API_TOKEN = 'CHANGE_THIS'
+ESCALATION_ID = 'P1UHZGM'
+
+ENDPOINT = "https://#{SUBDOMAIN}.pagerduty.com/api/v1/escalation_policies/" \
+           "#{ESCALATION_ID}/escalation_rules"
+TOKEN_STRING = "Token token=#{API_TOKEN}"
 
 data = {
-       escalation_rules:[
-       { 
-       id:"PVQ1NPV",
-       escalation_delay_in_minutes:10,
-       rule_object:
-         {
-         id:"P1CYCHE",
-         name:"Ops Weekly",
-         type:"schedule"
-         },
-         targets:[
-           {  
-           id:"P1CYCHE",
-           name:"Ops Weekly",
-           type:"schedule"
-           }
-         ]
-       }
-       ]
-     }
- 
-response = HTTParty.put(endpoint,  
-                         :body => data.to_json,
-                         :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
+  escalation_rules: [
+    {
+      id: 'PVQ1NPV',
+      escalation_delay_in_minutes: 10,
+      rule_object: {
+        id: 'P1CYCHE',
+        name: 'Ops Weekly',
+        type: 'schedule'
+      },
+      targets: [
+        {
+          id: 'P1CYCHE',
+          name: 'Ops Weekly',
+          type: 'schedule'
+        }
+     ]
+    }
+  ]
+}
+
+response = HTTParty.put(
+  ENDPOINT,
+  body: data.to_json,
+  headers: {
+    'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
+  }
+)
 puts response.body
