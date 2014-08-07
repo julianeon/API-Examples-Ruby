@@ -11,7 +11,7 @@ ENDPOINT = "https://#{SUBDOMAIN}.pagerduty.com/api/v1/users/#{USER_ID}"
 TOKEN_STRING = "Token token=#{API_TOKEN}"
 
 response = HTTParty.delete(
-  endpoint,
+  ENDPOINT,
   headers: {
     'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
   }
