@@ -18,7 +18,7 @@ data = {
 }
 
 response = HTTParty.post(
-  endpoint,
+  ENDPOINT,
   body: data.to_json,
   headers: {
     'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING

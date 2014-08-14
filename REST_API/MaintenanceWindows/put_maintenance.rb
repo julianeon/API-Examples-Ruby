@@ -7,7 +7,7 @@ subdomain='CHANGE_THIS'
 api_token='CHANGE_THIS'
 window_id='PL52PNQ'
 
-endpoint="https://#{subdomain}.pagerduty.com/api/v1/maintenance_windows/#{window_id}"
+ENDPOINT="https://#{subdomain}.pagerduty.com/api/v1/maintenance_windows/#{window_id}"
 token_string="Token token=#{api_token}"
 
 data = {
@@ -19,7 +19,7 @@ data = {
        ]
        }
 
-response = HTTParty.put(endpoint, 
+response = HTTParty.put(ENDPOINT, 
                          :body => data.to_json,
                          :headers => { "Content-Type" => 'application/json', "Authorization" => token_string})
 text= response.body

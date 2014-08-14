@@ -14,7 +14,7 @@ TOKEN_STRING = "Token token=#{API_TOKEN}"
 data = { requester_id: 'PMUQ3OT' }
 
 response = HTTParty.put(
-  endpoint,
+  ENDPOINT,
   body: data.to_json,
   headers: {
     'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING

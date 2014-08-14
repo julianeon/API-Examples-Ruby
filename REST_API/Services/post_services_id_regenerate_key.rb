@@ -12,7 +12,7 @@ ENDPOINT = "https://#{subdomain}.pagerduty.com/api/v1/services/" \
 TOKEN_STRING = "Token token=#{api_token}"
 
 response = HTTParty.post(
-  endpoint,
+  ENDPOINT,
   headers: {
     'Content-Type' => 'application/json', 'Authorization' => TOKEN_STRING
   }
